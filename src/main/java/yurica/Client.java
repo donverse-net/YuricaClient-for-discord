@@ -1,5 +1,6 @@
 package yurica;
 
+import yurica.Events.InteractionButton;
 import yurica.Events.InteractionCommand;
 
 import net.dv8tion.jda.api.JDABuilder;
@@ -10,6 +11,7 @@ import net.dv8tion.jda.api.requests.GatewayIntent;
 public class Client extends ListenerAdapter {
 
     InteractionCommand interactionCommand = new InteractionCommand();
+    InteractionButton interactionButton = new InteractionButton();
 
     public void LoginToCLientWithShard(String token, int shardId, int shardTotal){
         try {
@@ -27,11 +29,13 @@ public class Client extends ListenerAdapter {
 
         SetEventListener();
         LoadInteractionCommands();
+        LoadInteractionComponents(); // Add to map
     }
 
     public void SetEventListener(){
         try {
-            Main.jda.addEventListener(new InteractionCommand());
+            Main.jda.addEventListener(interactionCommand);
+            Main.jda.addEventListener(interactionButton);
         } catch (Exception e) {
             e.printStackTrace();
             return;
@@ -42,6 +46,16 @@ public class Client extends ListenerAdapter {
         try {
             System.out.println("Loading interaction commands...");
             interactionCommand.registerCommand();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return;
+        }
+    }
+
+    public void LoadInteractionComponents(){
+        try {
+            System.out.println("Loading interaction components...");
+            interactionButton.loadButtons();
         } catch (Exception e) {
             e.printStackTrace();
             return;

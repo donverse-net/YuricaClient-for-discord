@@ -36,10 +36,9 @@ public class Main {
     public static JDA jda = null;
 
     public static void main(String[] args) {
-        String[] arg = args;
 
         // Check if arguments are valid.
-        core.CheckArgs(arg);
+        core.CheckArgs(args);
 
         // Cannot run if no arguments are provided.
         if (!runnable) {
@@ -47,7 +46,7 @@ public class Main {
         }
 
         // Set config.
-        core.SetConfig(arg[0], arg[1], arg[2]);
+        core.SetConfig(args[0], args[1], args[2]);
         // Login to client with shard.
         client.LoginToCLientWithShard(token, shardId, shardTotal);
 
