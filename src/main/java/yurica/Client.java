@@ -13,7 +13,7 @@ public class Client extends ListenerAdapter {
     InteractionCommand interactionCommand = new InteractionCommand();
     InteractionButton interactionButton = new InteractionButton();
 
-    public void LoginToCLientWithShard(String token, int shardId, int shardTotal){
+    public void loginToCLientWithShard(String token, int shardId, int shardTotal){
         try {
             Main.jda = JDABuilder.createDefault(token,
                 GatewayIntent.GUILD_MESSAGES,
@@ -27,12 +27,12 @@ public class Client extends ListenerAdapter {
             e.printStackTrace();
         }
 
-        SetEventListener();
-        LoadInteractionCommands();
-        LoadInteractionComponents(); // Add to map
+        setEventListener();
+        loadInteractionCommands();
+        loadInteractionComponents(); // Add to map
     }
 
-    public void SetEventListener(){
+    private void setEventListener(){
         try {
             Main.jda.addEventListener(interactionCommand);
             Main.jda.addEventListener(interactionButton);
@@ -42,7 +42,7 @@ public class Client extends ListenerAdapter {
         }
     }
 
-    public void LoadInteractionCommands(){
+    private void loadInteractionCommands(){
         try {
             System.out.println("Loading interaction commands...");
             interactionCommand.registerCommand();
@@ -52,7 +52,7 @@ public class Client extends ListenerAdapter {
         }
     }
 
-    public void LoadInteractionComponents(){
+    private void loadInteractionComponents(){
         try {
             System.out.println("Loading interaction components...");
             interactionButton.loadButtons();
@@ -62,7 +62,7 @@ public class Client extends ListenerAdapter {
         }
     }
 
-    public void LogoutFromClient(){
+    public void logoutFromClient(){
         try {
             Main.jda.shutdown();
         } catch (Exception e) {

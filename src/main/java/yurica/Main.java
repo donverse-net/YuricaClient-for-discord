@@ -48,7 +48,10 @@ public class Main {
         // Set config.
         core.SetConfig(args[0], args[1], args[2]);
         // Login to client with shard.
-        client.LoginToCLientWithShard(token, shardId, shardTotal);
+        client.loginToCLientWithShard(token, shardId, shardTotal);
+
+        // Start console input.
+        core.consoleInput();
 
     }
 }

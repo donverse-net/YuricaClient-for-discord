@@ -34,6 +34,9 @@ public class InteractionButton extends ListenerAdapter {
         if (func != null) {
             String re = func.apply(event);
             System.out.println("Button function response: " + re);
+            // Disable button
+            Test test = new Test();
+            test.disableButton(event);
         } else {
             event.reply("Button not found!").setEphemeral(true).queue();
         }

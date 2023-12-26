@@ -6,11 +6,13 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.Commands;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
-import net.dv8tion.jda.api.interactions.components.buttons.Button;
 import yurica.Main;
+import yurica.Events.InteractionComponents.Buttons.Test;
 import yurica.Interfaces.ISlashCommand;
 
 public class PingCommand extends ListenerAdapter implements ISlashCommand {
+
+    Test test = new Test();
 
     @Override
     public void response(SlashCommandInteractionEvent event){
@@ -19,7 +21,7 @@ public class PingCommand extends ListenerAdapter implements ISlashCommand {
         event.reply("Pong! " + ping + "ms")
                 .setEphemeral(true)
                 .addActionRow(
-                    Button.primary("test", "Test Button")
+                    test.getButton()
                 )
                 .queue();
     }

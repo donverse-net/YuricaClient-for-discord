@@ -1,5 +1,7 @@
 package yurica;
 
+import java.util.Scanner;
+
 public class Core {
     public void CheckArgs(String[] args){
         if (args.length == 0) {
@@ -64,6 +66,48 @@ public class Core {
         } catch (Exception e){
             System.out.println("Invalid arguments or no arguments provided.");
             return;
+        }
+    }
+
+    private String help =
+            "\n" +
+            "---------------------------------------\n\n" +
+            "Command usage: [cmd] <opt>...\n" +
+            "\n" +
+            "help - Show help.\n" +
+            "stop - Stop the bot.\n" +
+            "clear - Clear the console.\n\n" +
+            "---------------------------------------" +
+            "\n";
+
+    public void consoleInput(){
+
+        while (Main.runnable) {
+            Scanner scanner = new Scanner(System.in);
+
+            System.out.print("yurica> ");
+
+            String input = scanner.nextLine();
+            switch(input) {
+                case "help":
+                    System.out.println(help);
+                    break;
+                case "clear":
+                    for (int i = 0; i < 50; ++i) {
+                        System.out.print("\n");
+                    }
+                    break;
+                case "stop":
+                    System.out.println("Stopping...");
+                    Main.client.logoutFromClient();
+                    Main.runnable = false;
+                    scanner.close();
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Unknown command. Type \"help\" for help.");
+                    break;
+            }
         }
     }
 }
