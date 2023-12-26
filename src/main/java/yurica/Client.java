@@ -2,7 +2,6 @@ package yurica;
 
 import yurica.Events.InteractionCommand;
 
-import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
@@ -10,9 +9,11 @@ import net.dv8tion.jda.api.requests.GatewayIntent;
 
 public class Client extends ListenerAdapter {
 
-    public JDA LoginToCLientWithShard(JDA jda, String token, int shardId, int shardTotal){
+    InteractionCommand interactionCommand = new InteractionCommand();
+
+    public void LoginToCLientWithShard(String token, int shardId, int shardTotal){
         try {
-            jda = JDABuilder.createDefault(token,
+            Main.jda = JDABuilder.createDefault(token,
                 GatewayIntent.GUILD_MESSAGES,
                 GatewayIntent.MESSAGE_CONTENT
             )
@@ -24,22 +25,22 @@ public class Client extends ListenerAdapter {
             e.printStackTrace();
         }
 
-        return jda;
+        SetEventListener();
+        LoadInteractionCommands();
     }
 
-    public void SetEventListener(JDA jda){
+    public void SetEventListener(){
         try {
-            jda.addEventListener(new InteractionCommand(jda));
+            Main.jda.addEventListener(new InteractionCommand());
         } catch (Exception e) {
             e.printStackTrace();
             return;
         }
     }
 
-    public void LoadInteractionCommands(JDA jda){
+    public void LoadInteractionCommands(){
         try {
             System.out.println("Loading interaction commands...");
-            InteractionCommand interactionCommand = new InteractionCommand(jda);
             interactionCommand.registerCommand();
         } catch (Exception e) {
             e.printStackTrace();
@@ -47,9 +48,9 @@ public class Client extends ListenerAdapter {
         }
     }
 
-    public void LogoutFromClient(JDA jda){
+    public void LogoutFromClient(){
         try {
-            jda.shutdown();
+            Main.jda.shutdown();
         } catch (Exception e) {
             e.printStackTrace();
             return;

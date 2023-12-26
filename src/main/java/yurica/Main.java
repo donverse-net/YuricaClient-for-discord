@@ -24,17 +24,18 @@ import net.dv8tion.jda.api.JDA;
 
 public class Main {
 
-    static boolean runnable = false;
+    public static boolean runnable = false;
 
-    static String token;
-    static int shardId;
-    static int shardTotal;
+    public static String token;
+    public static int shardId;
+    public static int shardTotal;
 
     static Core core = new Core();
     static Client client = new Client();
 
+    public static JDA jda = null;
+
     public static void main(String[] args) {
-        JDA jda = null;
         String[] arg = args;
 
         // Check if arguments are valid.
@@ -48,11 +49,7 @@ public class Main {
         // Set config.
         core.SetConfig(arg[0], arg[1], arg[2]);
         // Login to client with shard.
-        jda = client.LoginToCLientWithShard(jda, token, shardId, shardTotal);
-        // Set event listener.
-        client.SetEventListener(jda);
-        // Load interaction commands.
-        client.LoadInteractionCommands(jda);
+        client.LoginToCLientWithShard(token, shardId, shardTotal);
 
     }
 }
