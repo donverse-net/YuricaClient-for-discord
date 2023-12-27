@@ -32,7 +32,6 @@ public class PingCommand extends ListenerAdapter implements ISlashCommand {
             Guild guild = null;
             if (guildId != null) {
                 guild = Main.jda.getGuildById(guildId);
-                System.out.println("Registering guild " + guild.getName() + "...");
             }
 
             guild.updateCommands().addCommands(
@@ -90,7 +89,6 @@ public class PingCommand extends ListenerAdapter implements ISlashCommand {
             e.printStackTrace();
             return;
         }
-
     }
 
     @Override
