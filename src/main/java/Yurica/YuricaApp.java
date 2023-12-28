@@ -40,7 +40,7 @@ public class YuricaApp {
         try {
             api.addEventListener(interactionEventListener);
         } catch (Exception e) {
-            // TODO: handle exception
+            e.printStackTrace();
         }
     }
 

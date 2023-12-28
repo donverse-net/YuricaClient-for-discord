@@ -38,7 +38,7 @@ public class SlashCommandRegister {
                     .addOption(OptionType.STRING, "reason", "Reason for report.", true)
                     .addOption(OptionType.ATTACHMENT, "evidence", "If you have evidence, please attach it.", false)
                     .queue();
-            client.upsertCommand("moderation", "Moderation actions.")
+            client.upsertCommand("mod-action", "Moderation actions.")
                     .setGuildOnly(true)
                     .addOptions(
                         new OptionData(OptionType.USER, "target", "⚠️ Take care for selecting target user.", true)

@@ -51,5 +51,8 @@ public class Main {
         slashCommandRegister = new SlashCommandRegister(client.api);
         slashCommandRegister.register();
 
+        // Add event listener
+        client.AddListener();
+
     }
 }

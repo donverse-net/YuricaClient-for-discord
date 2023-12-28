@@ -1,5 +1,6 @@
 package Yurica.Events;
 
+import Yurica.Events.Interaction.SlashCommands;
 import net.dv8tion.jda.api.events.interaction.command.MessageContextInteractionEvent;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.events.interaction.command.UserContextInteractionEvent;
@@ -10,13 +11,15 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
 public class InteractionEventListener extends ListenerAdapter {
 
+    SlashCommands slashCommands = new SlashCommands();
+
     //#region Interactions
     /**
      * Interaction event listener for Slash Command
      */
     @Override
     public void onSlashCommandInteraction(SlashCommandInteractionEvent event) {
-        //
+        slashCommands.Execute(event);
     }
 
     /**
