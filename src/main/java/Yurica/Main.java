@@ -18,9 +18,9 @@
 //     https://docs.docker.com/compose/
 //     https://kubernetes.io/
 //
-package yurica;
+package Yurica;
 
-import net.dv8tion.jda.api.JDA;
+import System.System;
 
 public class Main {
 
@@ -30,28 +30,26 @@ public class Main {
     public static int shardId;
     public static int shardTotal;
 
-    static Core core = new Core();
-    static Client client = new Client();
+    static System core = new System();
 
-    public static JDA jda = null;
+    // Discord bots
+    static YuricaApp client;
+    private static SlashCommandRegister slashCommandRegister;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
-        // Check if arguments are valid.
-        core.CheckArgs(args);
+        // Get args and set to variables
+        token = args[0];
+        shardId = Integer.parseInt(args[1]);
+        shardTotal = Integer.parseInt(args[2]);
 
-        // Cannot run if no arguments are provided.
-        if (!runnable) {
-            return;
-        }
+        // Create client
+        client = new YuricaApp(token, shardId, shardTotal);
+        client.CreateClient();
 
-        // Set config.
-        core.SetConfig(args[0], args[1], args[2]);
-        // Login to client with shard.
-        client.loginToCLientWithShard(token, shardId, shardTotal);
-
-        // Start console input.
-        core.consoleInput();
+        // Create slash command register
+        slashCommandRegister = new SlashCommandRegister(client.api);
+        slashCommandRegister.register();
 
     }
 }
