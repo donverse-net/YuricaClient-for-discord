@@ -1,5 +1,6 @@
 package Yurica;
 
+import Yurica.Events.InteractionEventListener;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 
@@ -7,6 +8,8 @@ import net.dv8tion.jda.api.JDABuilder;
  * Yurica Discord Bot
  */
 public class YuricaApp {
+    private InteractionEventListener interactionEventListener = new InteractionEventListener();
+
     private String token;
     private int shardId;
     private int shardTotal;
@@ -30,6 +33,14 @@ public class YuricaApp {
                     .build();
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public void AddListener() {
+        try {
+            api.addEventListener(interactionEventListener);
+        } catch (Exception e) {
+            // TODO: handle exception
         }
     }
 
