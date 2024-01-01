@@ -1,5 +1,6 @@
 package Yurica.Events.Interaction;
 
+import Yurica.Commands.Default.Help;
 import Yurica.Commands.Default.Ping;
 import Yurica.Commands.Moderation.ModAction;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
@@ -8,6 +9,7 @@ public class SlashCommands {
 
     // Default commands
     Ping ping = new Ping();
+    Help help = new Help();
 
     // Moderation commands
     ModAction modAction = new ModAction();
@@ -18,6 +20,9 @@ public class SlashCommands {
             // Default commands
             case "ping":
                 ping.Execute(event);
+                break;
+            case "help":
+                help.Execute(event);
                 break;
 
             // Moderation commands
