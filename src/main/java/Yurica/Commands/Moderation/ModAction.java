@@ -32,7 +32,7 @@ public class ModAction {
                         Button.secondary("mod-kick", "Kick")
                             .withEmoji(Emoji.fromUnicode("⛔"))
                             .withDisabled(false),
-                        Button.primary("mod-to", "Timeout")
+                        Button.secondary("mod-to", "Timeout")
                             .withEmoji(Emoji.fromUnicode("⏱️"))
                             .withDisabled(false),
                         Button.secondary("mod-ban", "Ban")
