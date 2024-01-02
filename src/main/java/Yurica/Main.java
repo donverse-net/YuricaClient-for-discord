@@ -20,7 +20,7 @@
 //
 package Yurica;
 
-import System.System;
+import System.Sys;
 
 public class Main {
 
@@ -30,7 +30,7 @@ public class Main {
     public static int shardId;
     public static int shardTotal;
 
-    static System core = new System();
+    static Sys core = new Sys();
 
     // Discord bots
     static YuricaApp client;
